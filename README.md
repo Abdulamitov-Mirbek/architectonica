@@ -32,3 +32,15 @@ npm run build && npm start
 - Have a native speaker review the Kyrgyz text in `src/content/site.ts`.
 - Add real figures and services when the client provides them.
 - Set `metadataBase` in `src/app/[lang]/layout.tsx` to the production domain.
+
+## Deploying to Vercel
+
+The repo is ready for Vercel (`vercel.json`):
+
+1. On vercel.com, choose **Add New → Project** and import `Abdulamitov-Mirbek/architectonica`. Vercel detects Next.js; no settings need changing.
+2. Optional: once the domain is known, add the environment variable `NEXT_PUBLIC_SITE_URL` (for example `https://architectonica.kg`) so link previews use it. Until then the Vercel production URL is used.
+3. Every push to the production branch deploys automatically; other branches get preview links.
+
+From the terminal instead: `npx vercel` (preview) and `npx vercel --prod` (production).
+
+`vercel.json` pins the Frankfurt region (`fra1`), adds caching for `/images` and `/brand`, and sets basic security headers. `.vercelignore` keeps the client's original files (logo PDF, WhatsApp photos in `src/assets/originals`) out of CLI uploads.

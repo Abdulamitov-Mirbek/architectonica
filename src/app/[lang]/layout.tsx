@@ -22,6 +22,14 @@ export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
 
+/**
+ * Absolute base for Open Graph images and alternate links.
+ * Set NEXT_PUBLIC_SITE_URL once the domain is known; on Vercel the production URL is used until then.
+ */
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'http://localhost:3000');
+
 const isLocale = (v: string): v is Locale => (locales as readonly string[]).includes(v);
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -29,6 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isLocale(lang)) return {};
   const t = dict[lang].meta;
   return {
+    metadataBase: new URL(siteUrl),
     title: t.title,
     description: t.description,
     alternates: { languages: { ru: '/ru', ky: '/kg' } },

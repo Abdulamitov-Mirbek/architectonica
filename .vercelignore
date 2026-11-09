@@ -1,0 +1,5 @@
+# Client originals (logo PDF, WhatsApp photos in src/assets/originals, reference image).
+# The site uses the copies in public/, so these are not uploaded.
+Architectonica logo .pdf
+WhatsApp Image *.jpeg
+thiskindof.jpeg
