@@ -1,8 +1,20 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { photos, type SiteDict } from '@/content/site';
+
+const Blueprint = dynamic(() => import('./scene/Blueprint'), { ssr: false });
+
+function hasWebGL() {
+  try {
+    const c = document.createElement('canvas');
+    return !!(c.getContext('webgl2') || c.getContext('webgl'));
+  } catch {
+    return false;
+  }
+}
 
 const tile: Record<string, string> = {
   'facade-front': 'col-span-2 aspect-[16/10] lg:col-span-8 lg:row-span-3 lg:aspect-auto',
@@ -16,6 +28,38 @@ const tile: Record<string, string> = {
 export function Projects({ t, cta }: { t: SiteDict['projects']; cta: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState<number | null>(null);
+  const stage = useRef<HTMLDivElement>(null);
+  const bp = useRef({ visible: false, px: 0, py: 0 });
+  const [bpEnv, setBpEnv] = useState<{ mount: boolean; running: boolean; animate: boolean }>({ mount: false, running: false, animate: true });
+
+  // The blueprint loads when the section approaches and renders only while it is on screen.
+  useEffect(() => {
+    const el = stage.current;
+    if (!el || !hasWebGL()) return;
+    const animate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setBpEnv((s) => ({ ...s, animate }));
+    const near = new IntersectionObserver(([e]) => e.isIntersecting && setBpEnv((s) => ({ ...s, mount: true })), { rootMargin: '500px 0px' });
+    const vis = new IntersectionObserver(
+      ([e]) => {
+        bp.current.visible = e.intersectionRatio > 0.2;
+        setBpEnv((s) => ({ ...s, running: e.isIntersecting }));
+      },
+      { threshold: [0, 0.2] },
+    );
+    near.observe(el);
+    vis.observe(el);
+    const onMove = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse') return;
+      bp.current.px = (e.clientX / window.innerWidth) * 2 - 1;
+      bp.current.py = (e.clientY / window.innerHeight) * 2 - 1;
+    };
+    window.addEventListener('pointermove', onMove);
+    return () => {
+      near.disconnect();
+      vis.disconnect();
+      window.removeEventListener('pointermove', onMove);
+    };
+  }, []);
 
   useEffect(() => {
     const d = dialog.current;
@@ -29,9 +73,20 @@ export function Projects({ t, cta }: { t: SiteDict['projects']; cta: string }) {
   const current = open !== null ? photos[open] : null;
 
   return (
-    <section id="projects" className="projects-bg relative py-20 lg:py-28">
+    <section id="projects" className="projects-bg relative isolate overflow-hidden py-20 lg:py-28">
+      {/* the same house as a self-drawing blueprint */}
+      <div
+        ref={stage}
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[58svh] min-h-[420px] [mask-image:linear-gradient(to_bottom,black_55%,transparent)] lg:h-[86svh]"
+      >
+        {bpEnv.mount && <Blueprint input={bp} running={bpEnv.running} animate={bpEnv.animate} />}
+      </div>
       <div className="mx-auto max-w-[90rem] px-4 sm:px-8">
-        <h2 className="max-w-[20ch] text-[clamp(1.75rem,4.4vw,3.6rem)] text-white">{t.title}</h2>
+        <div className="on-scene flex min-h-[52svh] flex-col justify-end lg:min-h-[52svh] lg:justify-center">
+          <h2 className="max-w-[20ch] text-[clamp(1.75rem,4.4vw,3.6rem)] text-white">{t.title}</h2>
+          <p className="mt-4 max-w-[30rem] text-[0.95rem] text-glacier/80 sm:text-base">{t.blueprintNote}</p>
+        </div>
 
         <ul className="mt-10 grid grid-cols-2 gap-2 sm:gap-3 lg:mt-14 lg:grid-cols-12 lg:auto-rows-[clamp(110px,10.5vw,170px)]">
           {photos.map((p, i) => (

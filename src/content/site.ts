@@ -43,6 +43,7 @@ type Dict = {
     next: string;
     open: string;
     close: string;
+    blueprintNote: string;
     photos: Record<string, string>;
   };
   process: { title: string; steps: { title: string; text: string }[] };
@@ -134,6 +135,7 @@ export const dict: Record<Locale, Dict> = {
       next: 'Следующее фото',
       open: 'Открыть фото',
       close: 'Закрыть',
+      blueprintNote: 'Чертёж того же дома: путь солнца летом и зимой, свес кровли 1 м и геотермальный контур под газоном.',
       photos: {
         'facade-front': 'Фасад и плоская кровля с выносом',
         'living-dining': 'Гостиная и столовая',
@@ -238,6 +240,7 @@ export const dict: Record<Locale, Dict> = {
       next: 'Кийинки сүрөт',
       open: 'Сүрөттү ачуу',
       close: 'Жабуу',
+      blueprintNote: 'Ошол эле үйдүн чиймеси: жайкы жана кышкы күндүн жолу, 1 м чатыр чыгыңкысы жана чөптүн астындагы геотермалдык контур.',
       photos: {
         'facade-front': 'Фасад жана чыгыңкы жалпак чатыр',
         'living-dining': 'Конок бөлмө жана тамактануучу жай',
