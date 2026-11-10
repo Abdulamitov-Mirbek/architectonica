@@ -1,19 +1,31 @@
 import { dict, type Locale } from '@/content/site';
 import { Header } from '@/components/Header';
-import { Story } from '@/components/Story';
-import { Projects } from '@/components/Projects';
-import { Contact } from '@/components/Contact';
+import { Hero } from '@/components/Hero';
+import { Gallery } from '@/components/Gallery';
+import { Market, Experience, Health, Code7, Founder, Faq, Path } from '@/components/Sections';
+import { Earth } from '@/components/Earth';
+import { LeadForm } from '@/components/LeadForm';
+import { SmoothScroll } from '@/components/SmoothScroll';
 
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
   const lang = (await params).lang as Locale;
   const t = dict[lang];
   return (
     <>
-      <Header lang={lang} t={t.nav} />
+      <SmoothScroll />
+      <Header lang={lang} t={t} />
       <main>
-        <Story hero={t.hero} tech={t.tech} />
-        <Projects t={t.projects} cta={t.hero.secondary} />
-        <Contact t={t} />
+        <Hero t={t} />
+        <Gallery t={t} lang={lang} />
+        <Market t={t.market} />
+        <Experience t={t.world} />
+        <Health t={t.health} />
+        <Earth t={t.earth} ui={t.ui} />
+        <Code7 t={t.code} />
+        <Founder t={t.founder} />
+        <Faq t={t.faq} />
+        <Path t={t.path} />
+        <LeadForm t={t} />
       </main>
     </>
   );

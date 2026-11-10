@@ -12,6 +12,9 @@
   --color-glow: #ffcf8f;
   --color-brand: #4294cf;
   --color-brand-ink: #2f7cb6;
+  /* brand pattern blues (from the client's pattern book) */
+  --color-blue-deep: #10528f;
+  --color-blue-soft: #7bafde;
 
   --font-display: var(--font-unbounded), 'Arial', sans-serif;
   --font-sans: var(--font-onest), system-ui, sans-serif;
@@ -21,7 +24,7 @@
 
 @layer base {
   html {
-    scroll-padding-top: 4rem;
+    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
     background: var(--color-night);
   }
@@ -132,15 +135,50 @@
   text-shadow: 0 1px 18px rgb(10 18 24 / 0.55);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
+/* Lenis smooth scrolling */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Brand pattern band: the logo mark, upright and inverted, from the pattern book. */
+.pattern-band {
+  height: 56px;
+  background: url('/patterns/band.svg') repeat-x left center / auto 56px;
+}
+
+/* Hero photo drifts slowly; the ticker runs under it. */
+@keyframes kenburns {
+  from {
+    transform: scale(1.12) translate3d(-1.5%, 0, 0);
   }
+  to {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+.kenburns {
+  animation: kenburns 18s var(--ease-out-soft) both;
+}
+@keyframes ticker {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.ticker {
+  animation: ticker 38s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-line > span,
-  .hero-fade {
+  .hero-fade,
+  .kenburns,
+  .ticker {
     animation: none;
   }
 }
