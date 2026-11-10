@@ -177,7 +177,12 @@ html.lenis body {
 .marquee-reverse {
   animation-direction: reverse;
 }
-.marquee:hover .marquee-track,
+/* pause only where hover is real: on phones a tap leaves :hover stuck and froze the row */
+@media (hover: hover) {
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
 .marquee:focus-within .marquee-track {
   animation-play-state: paused;
 }
@@ -191,15 +196,12 @@ html.lenis body {
   animation: ticker 38s linear infinite;
 }
 
+/* Reduced motion: entrances and the photo drift stop. The ticker and photo rows run at
+   full speed regardless — the client asked for it (many iPhones have Reduce Motion on). */
 @media (prefers-reduced-motion: reduce) {
   .hero-line > span,
   .hero-fade,
-  .kenburns,
-  .ticker,
-  .marquee-track {
+  .kenburns {
     animation: none;
-  }
-  .marquee {
-    overflow-x: auto;
   }
 }
