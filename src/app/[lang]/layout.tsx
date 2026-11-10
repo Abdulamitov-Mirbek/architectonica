@@ -41,7 +41,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title: t.title,
     description: t.description,
     alternates: { languages: { ru: '/ru', ky: '/kg' } },
-    openGraph: { title: t.title, description: t.description, images: ['/images/exterior/facade-front.jpg'] },
+    openGraph: { title: t.title, description: t.description, images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Architectonica' }] },
+    twitter: { card: 'summary_large_image', images: ['/og.png'] },
   };
 }
 
