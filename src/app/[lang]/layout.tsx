@@ -1,14 +1,20 @@
 import type { Metadata, Viewport } from 'next';
 import { notFound } from 'next/navigation';
-import { Onest, Unbounded } from 'next/font/google';
+import { Onest } from 'next/font/google';
+import localFont from 'next/font/local';
 import { dict, htmlLang, locales, type Locale } from '@/content/site';
 import '../globals.css';
 
-const unbounded = Unbounded({
-  subsets: ['latin', 'cyrillic', 'cyrillic-ext'],
-  weight: ['400', '500', '600'],
+// Unbounded with the Kyrgyz letters it lacks (Ү ү Ө ө Ң ң) added; see scripts/build-display-font.py.
+const unbounded = localFont({
+  src: [
+    { path: '../../fonts/display-400.woff2', weight: '400' },
+    { path: '../../fonts/display-500.woff2', weight: '500' },
+    { path: '../../fonts/display-600.woff2', weight: '600' },
+  ],
   variable: '--font-unbounded',
   display: 'swap',
+  fallback: ['Arial', 'sans-serif'],
 });
 const onest = Onest({
   subsets: ['latin', 'cyrillic', 'cyrillic-ext'],
