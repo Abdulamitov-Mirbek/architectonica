@@ -20,6 +20,8 @@ export function Gallery({ t, lang }: { t: SiteDict; lang: Locale }) {
 
   const step = (dir: 1 | -1) => setOpen((i) => (i === null ? i : (i + dir + photos.length) % photos.length));
   const current = open !== null ? photos[open] : null;
+  const indexed = photos.map((ph, i) => ({ ph, i }));
+  const rows = [indexed.filter((_, k) => k % 2 === 0), indexed.filter((_, k) => k % 2 === 1)];
 
   return (
     <section id="projects" className="projects-bg relative py-16 lg:py-24">
@@ -45,32 +47,43 @@ export function Gallery({ t, lang }: { t: SiteDict; lang: Locale }) {
           </a>
         </div>
 
-        <ul className="mt-10 columns-2 gap-2 sm:gap-3 md:columns-3 xl:columns-4">
-          {photos.map((ph, i) => {
-            const wide = ph.w > ph.h;
-            return (
-              <li key={ph.id} className="mb-2 break-inside-avoid sm:mb-3">
-                <button
-                  type="button"
-                  onClick={() => setOpen(i)}
-                  aria-label={`${t.ui.open}: ${ph.alt[lang]}`}
-                  className={`group relative block w-full overflow-hidden rounded-xl bg-deep ${wide ? 'aspect-[4/3]' : 'aspect-[3/4]'}`}
-                >
-                  <Image
-                    src={ph.src}
-                    alt={ph.alt[lang]}
-                    fill
-                    sizes="(min-width: 1280px) 24vw, (min-width: 768px) 33vw, 50vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                  />
-                  <span className="absolute inset-0 bg-night/0 transition-colors duration-500 group-hover:bg-night/15" />
-                </button>
-              </li>
-            );
-          })}
-        </ul>
       </div>
 
+      {/* two rows of photos running in opposite directions; hover pauses, click opens */}
+      <div className="mt-10 flex flex-col gap-2 sm:gap-3">
+        {[rows[0], rows[1]].map((row, r) => (
+          <div key={r} className="marquee group/row overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+            <ul className={`marquee-track flex w-max gap-2 sm:gap-3 ${r === 1 ? 'marquee-reverse' : ''}`}>
+              {[0, 1, 2, 3].flatMap((copy) =>
+                row.map(({ ph, i }) => {
+                  const wide = ph.w > ph.h;
+                  const clone = copy > 0;
+                  return (
+                    <li key={`${copy}-${ph.id}`} aria-hidden={clone || undefined} className="shrink-0">
+                      <button
+                        type="button"
+                        tabIndex={clone ? -1 : undefined}
+                        onClick={() => setOpen(i)}
+                        aria-label={`${t.ui.open}: ${ph.alt[lang]}`}
+                        className={`group relative block h-[clamp(200px,30svh,320px)] overflow-hidden rounded-xl bg-deep ${wide ? 'aspect-[16/10]' : 'aspect-[3/4]'}`}
+                      >
+                        <Image
+                          src={ph.src}
+                          alt={clone ? '' : ph.alt[lang]}
+                          fill
+                          sizes={wide ? '(min-width: 768px) 520px, 80vw' : '(min-width: 768px) 260px, 40vw'}
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                        />
+                        <span className="absolute inset-0 bg-night/0 transition-colors duration-500 group-hover:bg-night/15" />
+                      </button>
+                    </li>
+                  );
+                }),
+              )}
+            </ul>
+          </div>
+        ))}
+      </div>
       <dialog
         ref={dialog}
         onClose={() => setOpen(null)}

@@ -347,9 +347,9 @@ export const photos = [
   { id: 'living-dining', src: '/images/interior/living-dining.jpg', w: 607, h: 1080, alt: { ru: 'Гостиная', kg: 'Конок бөлмө' } },
   { id: 'villa-aerial', src: '/images/projects/villa-aerial.jpg', w: 943, h: 532, alt: { ru: ru.hero.alt, kg: kg.hero.alt } },
   { id: 'kitchen', src: '/images/interior/kitchen.jpg', w: 607, h: 1080, alt: { ru: 'Кухня', kg: 'Ашкана' } },
-  { id: 'facade-entrance', src: '/images/exterior/facade-entrance.jpg', w: 1080, h: 607, alt: { ru: 'Входная группа', kg: 'Кире бериш' } },
+  { id: 'facade-wide', src: '/images/exterior/facade-wide.jpg', w: 1080, h: 607, alt: { ru: 'Фасад', kg: 'Фасад' } },
   { id: 'wardrobe-glass', src: '/images/interior/wardrobe-glass.jpg', w: 607, h: 1080, alt: { ru: 'Гардероб', kg: 'Гардероб' } },
   { id: 'villa-corner', src: '/images/projects/villa-corner.jpg', w: 943, h: 532, alt: { ru: ru.hero.alt, kg: kg.hero.alt } },
   { id: 'hallway', src: '/images/interior/hallway.jpg', w: 607, h: 1080, alt: { ru: 'Холл', kg: 'Холл' } },
-  { id: 'facade-wide', src: '/images/exterior/facade-wide.jpg', w: 1080, h: 607, alt: { ru: 'Фасад', kg: 'Фасад' } },
+  { id: 'facade-entrance', src: '/images/exterior/facade-entrance.jpg', w: 1080, h: 607, alt: { ru: 'Входная группа', kg: 'Кире бериш' } },
 ] as const;

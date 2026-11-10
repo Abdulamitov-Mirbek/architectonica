@@ -70,7 +70,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: color-mix(in oklab, var(--color-night) 78%, transparent);
+  background: color-mix(in oklab, var(--color-night) 94%, transparent);
   backdrop-filter: blur(14px) saturate(1.2);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
   box-shadow: inset 0 -2px 0 var(--color-larch);
@@ -165,6 +165,23 @@ html.lenis body {
 .kenburns {
   animation: kenburns 18s var(--ease-out-soft) both;
 }
+/* Photo rows on the second screen: each track holds the row 4×, so −50% loops seamlessly. */
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.marquee-track {
+  animation: marquee 70s linear infinite;
+}
+.marquee-reverse {
+  animation-direction: reverse;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
 @keyframes ticker {
   to {
     transform: translate3d(-50%, 0, 0);
@@ -178,7 +195,11 @@ html.lenis body {
   .hero-line > span,
   .hero-fade,
   .kenburns,
-  .ticker {
+  .ticker,
+  .marquee-track {
     animation: none;
+  }
+  .marquee {
+    overflow-x: auto;
   }
 }
