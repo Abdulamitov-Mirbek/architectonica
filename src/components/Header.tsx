@@ -41,7 +41,7 @@ export function Header({ lang, t }: { lang: Locale; t: SiteDict }) {
           href={`/${l}`}
           hrefLang={l === 'kg' ? 'ky' : 'ru'}
           aria-current={l === lang ? 'true' : undefined}
-          className={`rounded px-2 py-1 font-medium transition-colors ${l === lang ? 'bg-white/12 text-white' : 'text-haze hover:text-white'}`}
+          className={`rounded px-2.5 py-1.5 font-medium transition-colors ${l === lang ? 'bg-white/12 text-white' : 'text-haze hover:text-white'}`}
         >
           {l.toUpperCase()}
         </Link>
@@ -100,9 +100,12 @@ export function Header({ lang, t }: { lang: Locale; t: SiteDict }) {
           </a>
         </div>
 
+        {/* phones: the language switch stays on screen, like on desktop */}
+        <div className="ml-auto lg:hidden">{langSwitch}</div>
+
         <button
           type="button"
-          className="-mr-2 ml-auto grid size-11 place-items-center lg:hidden"
+          className="-mr-2 grid size-11 place-items-center lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? t.ui.close : t.ui.menu}
@@ -143,7 +146,6 @@ export function Header({ lang, t }: { lang: Locale; t: SiteDict }) {
           <a href={contacts.phoneHref} className="block font-display text-xl text-white">
             {contacts.phone}
           </a>
-          {langSwitch}
         </div>
       </div>
     </header>

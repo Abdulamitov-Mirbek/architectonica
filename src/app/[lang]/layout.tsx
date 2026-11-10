@@ -5,13 +5,13 @@ import { dict, htmlLang, locales, type Locale } from '@/content/site';
 import '../globals.css';
 
 const unbounded = Unbounded({
-  subsets: ['latin', 'cyrillic'],
+  subsets: ['latin', 'cyrillic', 'cyrillic-ext'],
   weight: ['400', '500', '600'],
   variable: '--font-unbounded',
   display: 'swap',
 });
 const onest = Onest({
-  subsets: ['latin', 'cyrillic'],
+  subsets: ['latin', 'cyrillic', 'cyrillic-ext'],
   weight: ['400', '500', '600'],
   variable: '--font-onest',
   display: 'swap',

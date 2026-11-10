@@ -10,14 +10,12 @@ export function Market({ t }: { t: SiteDict['market'] }) {
   return (
     <section id="market" className="relative isolate overflow-hidden py-20 lg:py-28">
       <BlueprintStage />
-      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-20 h-[45%] bg-[url('/patterns/mountains.svg')] bg-cover bg-bottom opacity-[0.08] [mask-image:linear-gradient(to_top,black,transparent_85%)]" />
       <div className="mx-auto max-w-[90rem] px-4 sm:px-8">
         <div className="on-scene flex min-h-[38svh] flex-col justify-end lg:min-h-[44svh]">
           <Eyebrow>{t.eyebrow}</Eyebrow>
           <h2 className="mt-3 max-w-[22ch] text-[clamp(1.7rem,3.8vw,3.2rem)] text-white">{t.title}</h2>
         </div>
         <p className="mt-10 max-w-[40ch] font-display text-[clamp(1.25rem,2.4vw,1.9rem)] leading-snug text-white">{t.conclusion}</p>
-        <p className="mt-4 text-xs text-haze/80">{t.source}</p>
       </div>
     </section>
   );
