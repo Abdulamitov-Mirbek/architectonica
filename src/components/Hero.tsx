@@ -50,7 +50,12 @@ export function Hero({ t }: { t: SiteDict }) {
 
       {/* ticker from the landing */}
       <div className="relative border-y border-white/10 bg-night/70 py-3 backdrop-blur-md">
-        <div className="flex w-max ticker" aria-hidden>
+        {/* duration scales with text length so the scroll speed stays the same */}
+        <div
+          className="flex w-max ticker"
+          style={{ animationDuration: `${Math.round(t.ticker.join('').length * 0.3 +t.ticker.length * 2)}s` }}
+          aria-hidden
+        >
           {[...t.ticker, ...t.ticker].map((item, i) => (
             <span key={i} className="flex shrink-0 items-center gap-6 pr-6 font-display text-sm text-glacier/85 sm:text-[0.95rem]">
               {item}
@@ -58,7 +63,7 @@ export function Hero({ t }: { t: SiteDict }) {
             </span>
           ))}
         </div>
-        <p className="sr-only">{t.ticker.join('. ')}</p>
+        <p className="sr-only">{t.ticker.map((s) => (/[.:]$/.test(s) ? s : `${s}.`)).join(' ')}</p>
       </div>
     </section>
   );
