@@ -37,10 +37,6 @@ export function Market({ t }: { t: SiteDict['market'] }) {
         <div className="mt-10">
           <Stats items={t.stats} />
         </div>
-        <h3 className="mt-14 text-[clamp(1.3rem,2.4vw,1.9rem)] text-white">{t.countryTitle}</h3>
-        <div className="mt-6">
-          <Stats items={t.country} tone="white" />
-        </div>
         <p className="mt-12 max-w-[40ch] font-display text-[clamp(1.25rem,2.4vw,1.9rem)] leading-snug text-white">{t.conclusion}</p>
         <p className="mt-4 text-xs text-haze/80">{t.source}</p>
       </div>
@@ -60,21 +56,7 @@ export function Experience({ t }: { t: SiteDict['world'] }) {
           <p className="self-end text-glacier/80 sm:text-lg">{t.lead}</p>
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-3xl bg-blue-deep">
-          <div className="relative p-6 sm:p-10">
-            <div aria-hidden className="pointer-events-none absolute -right-10 -top-6 h-48 w-[28rem] bg-[url('/patterns/bars.svg')] bg-contain bg-right bg-no-repeat opacity-25 sm:h-64" />
-            <p className="relative font-display text-sm text-blue-soft">{t.sgLabel}</p>
-            <dl className="relative mt-6 grid gap-8 md:grid-cols-3">
-              {t.sg.map((s) => (
-                <div key={s.v} className="flex flex-col">
-                  <dt className="order-2 mt-3 text-[0.95rem] leading-snug text-white/80">{s.l}</dt>
-                  <dd className="order-1 font-display text-[clamp(2.2rem,4.4vw,3.6rem)] font-medium leading-none tracking-tight text-white">{s.v}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-        <p className="mt-8 max-w-[62rem] text-glacier/80 sm:text-lg">{t.fact}</p>
+        <p className="mt-10 max-w-[62rem] text-glacier/80 sm:text-lg">{t.fact}</p>
 
         <article className="mt-14 grid overflow-hidden rounded-3xl bg-deep lg:grid-cols-[1fr_1.4fr]">
           <div aria-hidden className="relative min-h-[220px] bg-[#10528f] lg:min-h-full">
@@ -96,17 +78,13 @@ export function Experience({ t }: { t: SiteDict['world'] }) {
 
 export function Health({ t }: { t: SiteDict['health'] }) {
   return (
-    <section id="health" className="relative py-20 lg:py-28">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-8">
-        <Eyebrow>{t.eyebrow}</Eyebrow>
-        <h2 className="mt-3 max-w-[20ch] text-[clamp(1.7rem,3.8vw,3.2rem)] text-white">{t.title}</h2>
-        <div className="mt-10">
-          <Stats items={t.stats} />
+    <section id="health" className="relative pb-2 pt-20 lg:pt-28">
+      <div className="mx-auto grid max-w-[90rem] gap-8 px-4 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <div>
+          <Eyebrow>{t.eyebrow}</Eyebrow>
+          <h2 className="mt-3 max-w-[20ch] text-[clamp(1.7rem,3.8vw,3.2rem)] text-white">{t.title}</h2>
         </div>
-        <div className="mt-6">
-          <Stats items={t.climate} cols={3} tone="white" />
-        </div>
-        <p className="mt-10 max-w-[48rem] text-glacier/85 sm:text-lg">{t.climateCaption}</p>
+        <p className="self-end text-glacier/85 sm:text-lg">{t.climateCaption}</p>
       </div>
     </section>
   );
