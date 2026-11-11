@@ -11,7 +11,7 @@ export const htmlLang: Record<Locale, string> = { ru: 'ru', kg: 'ky' };
 export const contacts = {
   phone: '+996 500 75 01 01',
   phoneHref: 'tel:+996500750101',
-  email: '7architectonica@gmail.com',
+  email: 'info@architectonica.kg',
   whatsappNumber: '996500750101',
   instagramHandle: '@adilet_architect_',
   instagramUrl: 'https://www.instagram.com/adilet_architect_/',
