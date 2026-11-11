@@ -36,8 +36,14 @@ export function Experience({ t }: { t: SiteDict['world'] }) {
         <p className="mt-10 max-w-[62rem] text-glacier/80 sm:text-lg">{t.fact}</p>
 
         <article className="mt-14 grid overflow-hidden rounded-3xl bg-deep lg:grid-cols-[1fr_1.4fr]">
-          <div aria-hidden className="relative min-h-[220px] bg-[#10528f] lg:min-h-full">
-            <div className="absolute inset-0 bg-[url('/patterns/marks.svg')] bg-cover bg-center" />
+          <div className="relative aspect-square bg-[#10528f] lg:aspect-auto lg:min-h-full">
+            <Image
+              src="/images/world/khoo-teck-puat.jpg"
+              alt="Khoo Teck Puat Hospital, Singapore"
+              fill
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="object-cover"
+            />
           </div>
           <div className="p-6 sm:p-10">
             <Eyebrow>{t.hEyebrow}</Eyebrow>
