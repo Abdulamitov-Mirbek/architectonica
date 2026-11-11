@@ -101,7 +101,7 @@ export function Founder({ t }: { t: SiteDict['founder'] }) {
         <div className="relative mx-auto w-full max-w-[22rem]">
           <div aria-hidden className="absolute -inset-4 rounded-full border-2 border-brand/70" />
           <div className="relative aspect-square overflow-hidden rounded-full bg-glacier">
-            <Image src="/images/team/adilet.png" alt={t.name} fill sizes="(min-width: 1024px) 26rem, 80vw" className="object-cover" />
+            <Image src="/images/team/adilet.jpg" alt={t.name} fill sizes="(min-width: 1024px) 26rem, 80vw" className="object-cover" />
           </div>
         </div>
         <div>
