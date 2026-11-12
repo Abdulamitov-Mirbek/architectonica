@@ -168,7 +168,7 @@ export function Earth({ t, ui }: { t: SiteDict['earth']; ui: SiteDict['ui'] }) {
 
       <div className="mx-auto mt-20 max-w-[90rem] px-4 sm:px-8">
         <h3 className="text-[clamp(1.4rem,2.6vw,2.1rem)] text-white">{t.whoTitle}</h3>
-        <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <ol className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4 xl:grid-cols-7">
           {t.who.map((w, i) => (
             <li key={w} className="rounded-2xl bg-deep/80 p-5">
               <span className="font-display text-sm text-glow">{String(i + 1).padStart(2, '0')}</span>
@@ -176,8 +176,6 @@ export function Earth({ t, ui }: { t: SiteDict['earth']; ui: SiteDict['ui'] }) {
             </li>
           ))}
         </ol>
-        <p className="mt-6 text-[0.95rem] text-glacier/75">{t.whoCaption}</p>
-        <p className="mt-8 text-xs leading-relaxed text-haze/75">{t.sources}</p>
       </div>
     </section>
   );

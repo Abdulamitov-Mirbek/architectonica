@@ -35,7 +35,9 @@ export function Experience({ t }: { t: SiteDict['world'] }) {
 
         <p className="mt-10 max-w-[62rem] text-glacier/80 sm:text-lg">{t.fact}</p>
 
-        <article className="mt-14 grid overflow-hidden rounded-3xl bg-deep lg:grid-cols-[1fr_1.4fr]">
+        <h3 className="mt-14 max-w-[28ch] text-[clamp(1.4rem,2.6vw,2.1rem)] text-white">{t.casesTitle}</h3>
+
+        <article className="mt-8 grid overflow-hidden rounded-3xl bg-deep lg:grid-cols-[1fr_1.4fr]">
           <div className="relative aspect-square bg-[#10528f] lg:aspect-auto lg:min-h-full">
             <Image
               src="/images/world/khoo-teck-puat.jpg"
@@ -52,6 +54,25 @@ export function Experience({ t }: { t: SiteDict['world'] }) {
             <p className="mt-5 border-l-2 border-larch pl-4 text-[0.95rem] text-larch-light">{t.hAward}</p>
           </div>
         </article>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          {t.cases.map((c) => (
+            <article key={c.title} className="rounded-3xl bg-deep p-6 sm:p-10">
+              <h3 className="text-[clamp(1.2rem,2vw,1.6rem)] text-white">{c.title}</h3>
+              <p className="mt-4 text-glacier/80">
+                {c.strong && c.text.includes(c.strong) ? (
+                  <>
+                    {c.text.slice(0, c.text.indexOf(c.strong))}
+                    <strong className="font-semibold text-white">{c.strong}</strong>
+                    {c.text.slice(c.text.indexOf(c.strong) + c.strong.length)}
+                  </>
+                ) : (
+                  c.text
+                )}
+              </p>
+            </article>
+          ))}
+        </div>
 
         <p className="mt-14 max-w-[40ch] font-display text-[clamp(1.25rem,2.4vw,1.9rem)] leading-snug text-white">{t.conclusion}</p>
       </div>
@@ -96,6 +117,22 @@ export function Code7({ t }: { t: SiteDict['code'] }) {
           <p className="mt-2 font-display text-[clamp(1.2rem,2.2vw,1.7rem)] text-white">{t.slogan}</p>
         </div>
       </div>
+
+      {/* the seven principles, as in the client's booklet */}
+      <div className="mx-auto mt-16 max-w-[90rem] px-4 sm:px-8 lg:mt-20">
+        <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr] lg:items-end lg:gap-16">
+          <h3 className="max-w-[16ch] text-[clamp(1.5rem,3vw,2.4rem)] text-white">{t.principlesTitle}</h3>
+          <p className="text-white/80 sm:text-lg">{t.principlesLead}</p>
+        </div>
+        <ol className="mt-10 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
+          {t.principles.map((p, i) => (
+            <li key={p} className="flex items-baseline gap-4 border-b border-white/25 py-4">
+              <span className="font-display text-[clamp(1.6rem,2.6vw,2.2rem)] font-light leading-none text-white/90">{String(i + 1).padStart(2, '0')}</span>
+              <span className="text-white/90">{p}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
   );
 }
@@ -113,9 +150,18 @@ export function Founder({ t }: { t: SiteDict['founder'] }) {
         <div>
           <Eyebrow>{t.eyebrow}</Eyebrow>
           <h2 className="mt-3 text-[clamp(1.7rem,3.6vw,3rem)] text-white">{t.title}</h2>
-          <blockquote className="mt-6 text-[1.05rem] leading-relaxed text-glacier/90 sm:text-xl">{t.quote}</blockquote>
+          <blockquote className="mt-6 space-y-4 text-[1.05rem] leading-relaxed text-glacier/90 sm:text-xl">
+            {t.quote.map((q) => (
+              <p key={q}>{q}</p>
+            ))}
+          </blockquote>
           <p className="mt-6 font-display text-lg text-white">{t.name}</p>
           <p className="text-haze">{t.role}</p>
+          <ul className="mt-4 space-y-2 border-l-2 border-brand/70 pl-4 text-[0.95rem] text-glacier/80">
+            {t.credentials.map((c) => (
+              <li key={c}>{c}</li>
+            ))}
+          </ul>
           <a href={contacts.instagramUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-blue-soft underline-offset-4 hover:underline">
             {contacts.instagramHandle}
           </a>

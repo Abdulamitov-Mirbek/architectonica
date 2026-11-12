@@ -16,7 +16,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       <Header lang={lang} t={t} />
       <main>
         <Hero t={t} />
-        <Gallery t={t} lang={lang} />
+        <Gallery t={t} />
         <Market t={t.market} />
         <Experience t={t.world} />
         <Health t={t.health} />
