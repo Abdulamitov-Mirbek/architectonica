@@ -8,14 +8,15 @@ export function Hero({ t }: { t: SiteDict }) {
     <section id="home" className="relative isolate flex min-h-svh flex-col overflow-hidden pt-20 lg:pt-28">
       {/* phones: the whole photo sits above the text; desktop: full-screen background */}
       <div className="relative aspect-[1365/768] overflow-hidden lg:absolute lg:inset-0 lg:-z-20 lg:aspect-auto">
-        <Image src="/images/hero/eco-house.jpg" alt={h.alt} fill priority quality={90} sizes="100vw" className="kenburns object-cover lg:object-[60%_50%]" />
+        <Image src="/images/hero/eco-house.jpg" alt={h.alt} fill priority quality={90} sizes="100vw" className="kenburns object-cover lg:object-[0%_50%]" />
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-night to-transparent lg:hidden" />
       </div>
-      <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-night/95 via-night/70 via-40% to-night/10 lg:block" />
+      {/* desktop: text on the right, so the house and the ground pipes on the left stay in view */}
+      <div className="absolute inset-0 -z-10 hidden bg-gradient-to-l from-night/95 via-night/75 via-35% to-transparent to-65% lg:block" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-night to-transparent" />
 
       <div className="mx-auto flex w-full max-w-[90rem] flex-1 flex-col justify-center px-4 pb-10 pt-6 sm:px-8 lg:pb-16 lg:pt-0">
-        <div className="on-scene max-w-[46rem]">
+        <div className="on-scene max-w-[46rem] lg:ml-auto lg:max-w-[29rem] xl:max-w-[36rem]">
           <p className="hero-fade flex items-baseline gap-3 text-white" style={{ animationDelay: '0.1s' }}>
             <span className="font-display text-[clamp(4rem,min(15vw,17svh),10rem)] font-medium leading-[0.9] tracking-[-0.04em]">{h.big}</span>
             <span className="font-display text-[clamp(1.4rem,3.4vw,2.4rem)] text-glow">{h.unit}</span>
@@ -34,15 +35,15 @@ export function Hero({ t }: { t: SiteDict }) {
           <p className="hero-fade mt-4 font-display text-sm text-larch-light sm:text-base" style={{ animationDelay: '1s' }}>
             {t.slogan}
           </p>
-          <div className="hero-fade mt-7 flex flex-col gap-3 min-[460px]:flex-row" style={{ animationDelay: '1.1s' }}>
-            <a href="#form" className="rounded-full bg-brand px-6 py-3.5 text-center font-medium text-white transition-colors hover:bg-brand-ink">
+          <div className="hero-fade mt-7 flex flex-col gap-3 min-[460px]:flex-row min-[460px]:flex-wrap" style={{ animationDelay: '1.1s' }}>
+            <a href="#form" className="whitespace-nowrap rounded-full bg-brand px-6 py-3.5 text-center font-medium text-white transition-colors hover:bg-brand-ink">
               {t.cta}
             </a>
             <a
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-night/30 px-6 py-3.5 text-center font-medium text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)] backdrop-blur-sm transition-colors hover:bg-night/60"
+              className="whitespace-nowrap rounded-full bg-night/30 px-6 py-3.5 text-center font-medium text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)] backdrop-blur-sm transition-colors hover:bg-night/60"
             >
               {t.waBtn}
             </a>
