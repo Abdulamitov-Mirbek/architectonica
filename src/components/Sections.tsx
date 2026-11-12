@@ -74,6 +74,12 @@ export function Experience({ t }: { t: SiteDict['world'] }) {
           ))}
         </div>
 
+        {/* ISO as a small accent, as the client asked */}
+        <aside className="mt-4 flex flex-col gap-2 rounded-2xl border border-larch/40 px-6 py-5 sm:px-10 md:flex-row md:items-baseline md:gap-8">
+          <p className="shrink-0 font-medium text-larch-light">{t.iso.title}</p>
+          <p className="text-[0.95rem] text-glacier/80">{t.iso.text}</p>
+        </aside>
+
         <p className="mt-14 max-w-[40ch] font-display text-[clamp(1.25rem,2.4vw,1.9rem)] leading-snug text-white">{t.conclusion}</p>
       </div>
     </section>
