@@ -6,13 +6,15 @@ export function Hero({ t }: { t: SiteDict }) {
   const h = t.hero;
   return (
     <section id="home" className="relative isolate flex min-h-svh flex-col overflow-hidden pt-20 lg:pt-28">
-      <div className="absolute inset-0 -z-20 overflow-hidden">
-        <Image src="/images/hero/eco-house.jpg" alt={h.alt} fill priority quality={90} sizes="100vw" className="kenburns object-cover object-[42%_50%] lg:object-[60%_50%]" />
+      {/* phones: the whole photo sits above the text; desktop: full-screen background */}
+      <div className="relative aspect-[1365/768] overflow-hidden lg:absolute lg:inset-0 lg:-z-20 lg:aspect-auto">
+        <Image src="/images/hero/eco-house.jpg" alt={h.alt} fill priority quality={90} sizes="100vw" className="kenburns object-cover lg:object-[60%_50%]" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-night to-transparent lg:hidden" />
       </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night via-night/70 via-45% to-night/20 lg:bg-gradient-to-r lg:from-night/95 lg:via-night/70 lg:via-40% lg:to-night/10" />
+      <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-night/95 via-night/70 via-40% to-night/10 lg:block" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-night to-transparent" />
 
-      <div className="mx-auto flex w-full max-w-[90rem] flex-1 flex-col justify-end px-4 pb-10 sm:px-8 lg:justify-center lg:pb-16">
+      <div className="mx-auto flex w-full max-w-[90rem] flex-1 flex-col justify-center px-4 pb-10 pt-6 sm:px-8 lg:pb-16 lg:pt-0">
         <div className="on-scene max-w-[46rem]">
           <p className="hero-fade flex items-baseline gap-3 text-white" style={{ animationDelay: '0.1s' }}>
             <span className="font-display text-[clamp(4rem,min(15vw,17svh),10rem)] font-medium leading-[0.9] tracking-[-0.04em]">{h.big}</span>

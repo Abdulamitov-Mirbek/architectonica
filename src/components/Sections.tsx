@@ -57,7 +57,11 @@ export function Experience({ t }: { t: SiteDict['world'] }) {
 
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           {t.cases.map((c) => (
-            <article key={c.title} className="rounded-3xl bg-deep p-6 sm:p-10">
+            <article key={c.title} className="overflow-hidden rounded-3xl bg-deep">
+              <div className="relative aspect-[16/9] bg-[#10528f]">
+                <Image src={c.img} alt={c.alt} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
+              </div>
+              <div className="p-6 sm:p-10">
               <h3 className="text-[clamp(1.2rem,2vw,1.6rem)] text-white">{c.title}</h3>
               <p className="mt-4 text-glacier/80">
                 {c.strong && c.text.includes(c.strong) ? (
@@ -70,6 +74,7 @@ export function Experience({ t }: { t: SiteDict['world'] }) {
                   c.text
                 )}
               </p>
+              </div>
             </article>
           ))}
         </div>
