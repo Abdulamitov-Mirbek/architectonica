@@ -13,8 +13,8 @@ export const contacts = {
   phoneHref: 'tel:+996500750101',
   email: 'info@architectonica.kg',
   whatsappNumber: '996500750101',
-  instagramHandle: '@adilet_architect_',
-  instagramUrl: 'https://www.instagram.com/adilet_architect_/',
+  instagramHandle: '@adilet_architect',
+  instagramUrl: 'https://www.instagram.com/adilet_architect/',
 };
 
 export const whatsappLink = (text?: string) =>
@@ -37,7 +37,7 @@ const ru = {
     bigSub: 'жилья ввели в Кыргызстане за 2025 год.',
     q: 'Сколько из них построено правильно?',
     sub: '7A ARCHITECTONICA — франшиза для тех, кто хочет строить правильно и зарабатывать на этом.',
-    alt: 'Современная вилла — проект 7A ARCHITECTONICA',
+    alt: 'Энергоэффективный дом: солнечные панели и грунтовый теплообменник',
   },
   ticker: [
     '7 принципов',
@@ -212,7 +212,7 @@ const kg: SiteDict = {
     bigSub: 'турак жай 2025-жылы Кыргызстанда пайдаланууга берилген.',
     q: 'Алардын канчасы туура курулган?',
     sub: '7A ARCHITECTONICA — туура куруп, андан киреше тапкысы келгендер үчүн франшиза.',
-    alt: 'Заманбап вилла — 7A ARCHITECTONICA долбоору',
+    alt: 'Энергияны үнөмдөөчү үй: күн панелдери жана жер астындагы жылуулук алмаштыргыч',
   },
   ticker: [
     '7 принцип',

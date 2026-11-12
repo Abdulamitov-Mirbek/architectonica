@@ -7,7 +7,7 @@ export function Hero({ t }: { t: SiteDict }) {
   return (
     <section id="home" className="relative isolate flex min-h-svh flex-col overflow-hidden pt-20 lg:pt-28">
       <div className="absolute inset-0 -z-20 overflow-hidden">
-        <Image src="/images/projects/villa-street-hd.jpg" alt={h.alt} fill priority quality={90} sizes="100vw" className="kenburns object-cover object-[60%_50%]" />
+        <Image src="/images/hero/eco-house.jpg" alt={h.alt} fill priority quality={90} sizes="100vw" className="kenburns object-cover object-[42%_50%] lg:object-[60%_50%]" />
       </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night via-night/70 via-45% to-night/20 lg:bg-gradient-to-r lg:from-night/95 lg:via-night/70 lg:via-40% lg:to-night/10" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-night to-transparent" />
